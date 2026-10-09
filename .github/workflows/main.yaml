@@ -1,0 +1,34 @@
+name: Desplegar en Surge
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: surge-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Publicar sitio
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar Surge
+        run: npm install --global surge
+
+      - name: Desplegar en Surge
+        run: surge ./ "${{ secrets.SURGE_DOMAIN }}" --token "${{ secrets.SURGE_TOKEN }}"
