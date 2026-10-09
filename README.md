@@ -14,10 +14,9 @@ el contenido del repositorio.
 En el repositorio, abrir **Settings > Secrets and variables > Actions** y crear:
 
 - `SURGE_TOKEN`: token privado obtenido con `surge token`.
-- `SURGE_DOMAIN`: dominio completo elegido para el sitio, por ejemplo
-  `https://pagina-ci-usuario.surge.sh`.
 
-Estos valores no se guardan en el código ni en el historial de Git.
+El token no se guarda en el código ni en el historial de Git. El dominio público
+del proyecto es `pagina-ci-osenrey.surge.sh` y se conserva también en `CNAME`.
 
 ## Prueba local
 
@@ -30,7 +29,7 @@ Con Node.js y Surge instalados:
 
 ```bash
 npm install --global surge
-surge ./ https://pagina-ci-usuario.surge.sh
+surge ./ pagina-ci-osenrey.surge.sh
 ```
 
 Después del primer despliegue, los siguientes se realizan automáticamente al
